@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int compareVersion(string version1, string version2) 
+    {
+     vector<int>v1,v2;
+        for(auto& w:version1){if(w=='.')w=' ';}
+        for(auto& w:version2){if(w=='.')w=' ';}
+         istringstream a(version1);
+        istringstream b(version2);
+        
+        while(1)
+        {int num1,num2;
+            if(not(a>>num1)){num1=0;}
+            if(not(b>>num2)){num2=0;}
+         if(not(a)and not(b)){return 0;}
+            if(num1<num2){return -1;}
+            if(num1>num2){return 1;}
+            
+        }
+    }
+};
