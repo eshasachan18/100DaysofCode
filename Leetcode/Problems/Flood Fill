@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) 
+    {
+        list<vector<int>>v;
+        int old=image[sr][sc];
+        v.push_back({sr,sc});
+        vector<vector<int>>dir={{1,0},{-1,0},{0,1},{0,-1}};
+        int seen[51][51]={{0}};
+        while(v.size()!=0)
+        {
+            auto node=v.front();
+            v.pop_front();
+            int a=node[0];int b=node[1];
+            image[a][b]=newColor;
+            for(auto& w:dir)
+            {
+                int r=w[0]+a,c=w[1]+b;
+                if(r<0||r>=image.size()||c<0||c>=image[0].size()){continue;}
+                if(image[r][c]!=old){continue;}
+                if(seen[r][c]){continue;}
+                seen[r][c]=1;
+                v.push_back({r,c});
+            }
+        }
+        return image;
+    }
+};
