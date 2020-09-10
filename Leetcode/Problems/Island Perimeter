@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int islandPerimeter(vector<vector<int>>& grid) 
+    {
+        list<vector<int>>vis;
+        int seen[100][100]={{0}};int f=0;
+       vector< vector<int>>dir={{1,0},{-1,0},{0,1},{0,-1}};
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(grid[i][j]==1){vis.push_back({i,j});f++;seen[i][j]=1;break;}
+            }
+            if(f!=0){break;}
+        }
+        int count=0;
+        while(vis.size()!=0)
+        {
+            int r=vis.front()[0];
+            int c=vis.front()[1];
+            vis.pop_front();
+            for(auto& w:dir)
+            {
+                int rr=w[0]+r;
+                int cc=w[1]+c;
+                if(rr<0||rr>=grid.size()||cc<0||cc>=grid[0].size())           
+                {count++;continue;}
+                if(grid[rr][cc]==0){count++;continue;}
+                if(seen[rr][cc]){continue;}
+                seen[rr][cc]=1;
+                vis.push_back({rr,cc});
+            }
+        }
+        return count;
+    }
+};
