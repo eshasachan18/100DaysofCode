@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isSubsequence(string t, string s) 
+    {
+        int n=t.length();vector<char>dp;
+        int ind=-1;
+        for(int i=0;i<n;i++)
+        {
+         for(int j=0;j<s.length();j++)
+         {
+             if(t[i]==s[j])
+             {
+                 if(j>ind)
+                 {
+                     ind=j;
+                   dp.push_back(t[i]) ;
+                     break;
+                 }
+             }
+         }
+        }
+        if(dp.size()==t.length()){return true;}
+        else
+        {return false;}
+    }
+};
