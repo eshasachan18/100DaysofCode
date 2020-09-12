@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) 
+    {
+        
+        vector<int>dp;int n=nums.size();
+        if(n==0){return 0;}
+        dp.push_back(nums[0]);
+        for(int i=1;i<n;i++)
+        {auto it=dp.end();it--;
+            if(nums[i]>*it)
+            {
+                dp.push_back(nums[i]);
+            }
+            else
+            {
+                auto itr=std::lower_bound(dp.begin(),dp.end(),nums[i]);
+                *itr=nums[i];
+            }
+        }
+        return dp.size();
+    }
+};
