@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) 
+    {sort(candidates.begin(),candidates.end());
+     vector<bool>seen(candidates.size(),0);
+        vector<vector<int>>ans;
+        vector<int>v;
+        func(candidates,ans,v,target,0,seen);
+        vector<vector<int>>s;
+        for(int i=0;i<ans.size();i++)
+        {
+            if(find(s.begin(),s.end(),ans[i])==s.end())
+            {s.push_back(ans[i]);}
+        }
+        return s;
+    }
+    void func(vector<int>& candidates,vector<vector<int>>& ans,vector<int>v,int sum,int start,vector<bool>seen)
+    {
+        if(sum==0)
+        {
+            ans.push_back(v);return;
+        }
+        for(int i=start;i<candidates.size()&&candidates[i]<=sum;i++)
+        {if(!seen[i])
+        {
+            v.push_back(candidates[i]);seen[i]=1;
+        func(candidates,ans,v,sum-candidates[i],start+1,seen);
+            v.pop_back();
+        
+        }
+         else{continue;}   
+            
+        }
+    }
+};
