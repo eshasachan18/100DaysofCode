@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string countAndSay(int n)
+    {string t="1";
+        for(int i=1;i<n;i++)
+        {
+            t=func(t);
+        }
+     return t;
+    }
+    string func(string s)
+    {string temp="";
+       int n=s.length();
+        
+        int i=0,j=0;int c;
+        while(i<n&&j<n)
+        {c=0;
+            while(s[j]==s[i])
+            {
+                j++;c++;
+            }
+         temp+=to_string(c);
+         temp+=s[i];
+         i=j;
+        }
+        return temp;
+    }
+};
