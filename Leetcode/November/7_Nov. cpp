@@ -1,0 +1,71 @@
+Prob=https://leetcode.com/explore/challenge/card/november-leetcoding-challenge/564/week-1-november-1st-november-7th/3522/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
+ {
+        string s1="",s2="",s="";
+        ListNode*head1=l1,*head2=l2,*l,*x;
+        while(head1!=NULL)
+        {
+            s1.push_back(head1->val+'0');
+            head1=head1->next;
+        }
+         while(head2!=NULL)
+        {
+           s2.push_back(head2->val+'0');
+             head2=head2->next;
+        }
+       if(s1.length()>s2.length())
+       {
+           s2.insert(0,s1.length()-s2.length(),'0');
+       }
+        else
+        {
+            s1.insert(0,s2.length()-s1.length(),'0');
+        }
+        ListNode *node=new ListNode();
+        l=node;
+        int i=s1.length()-1,c=0;
+        while(i>=0)
+        {
+            int n=s1[i]+s2[i]-'0'-'0'+c;
+            if(n>9)
+            {
+                c=n/10;
+            }
+            else{c=0;}
+            s.push_back(n%10+'0');
+            i--;
+        }
+        if(c!=0)
+        {
+            s.push_back(c+'0');
+        }
+        
+        ListNode * nodea=new ListNode();
+        l=nodea;x=nodea;
+        i=s.length()-1;
+        while(i>=0)
+        {
+            ListNode *a=new ListNode(s[i]-'0');
+            l->next=a;
+            l=l->next;
+            i--;
+        }
+        
+        return x->next;
+        
+        
+        
+    }
+};
